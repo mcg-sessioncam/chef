@@ -203,6 +203,18 @@ if node['apache']['default_site_enabled']
   end
 end
 
+template '/var/www/html/index.html'
+ source 'index.erb'
+ action :create
+ owner 'root'
+ mode '0664'
+end
+
+execute 'a2ensite' do
+  command 'a2ensite default'
+  notifies :reload, service[apache2], :immediately
+end
+
 service 'apache2' do
   service_name node['apache']['service_name']
   case node['platform_family']
@@ -219,14 +231,3 @@ service 'apache2' do
   only_if "#{node['apache']['binary']} -t", :environment => { 'APACHE_LOG_DIR' => node['apache']['log_dir'] }, :timeout => 10
 end
 
-template '/var/www/html/index.html'
- source 'index.erb'
- action :create
- owner 'root'
- mode '0664'
-end
-
-execute 'a2ensite' do
-  command 'a2ensite default'
-  notifies :reload, service[apache2], :immediately
-end
