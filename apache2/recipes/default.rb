@@ -212,7 +212,7 @@ end
 
 execute 'a2ensite' do
   command 'a2ensite default'
-  notifies :reload, service[apache2], :immediately
+  notifies :reload, service['apache2'], :immediately
 end
 
 service 'apache2' do
