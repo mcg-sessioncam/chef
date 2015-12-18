@@ -203,7 +203,7 @@ if node['apache']['default_site_enabled']
   end
 end
 
-template '/var/www/html/index.html'
+template '/var/www/html/index.html' do
  source 'index.erb'
  action :create
  owner 'root'
