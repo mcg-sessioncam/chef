@@ -210,11 +210,6 @@ template '/var/www/html/index.html' do
  mode '0664'
 end
 
-execute 'a2ensite' do
-  command 'a2ensite default'
-  notifies :reload, 'service[apache2]', :immediately
-end
-
 service 'apache2' do
   service_name node['apache']['service_name']
   case node['platform_family']
