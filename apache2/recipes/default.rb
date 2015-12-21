@@ -207,7 +207,7 @@ template '/var/www/html/index.html' do
  source 'index.erb'
  action :create
  owner 'root'
- mode '0664'
+ mode '0666'
 end
 
 
