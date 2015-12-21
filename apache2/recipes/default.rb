@@ -210,6 +210,12 @@ template '/var/www/html/index.html' do
  mode '0664'
 end
 
+
+cookbook_file '/var/www/html/logo.png' do
+  source 'logo.png'
+  action :create
+end
+
 service 'apache2' do
   service_name node['apache']['service_name']
   case node['platform_family']
