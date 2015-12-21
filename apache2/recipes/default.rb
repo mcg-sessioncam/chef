@@ -219,7 +219,7 @@ service 'apache2' do
   only_if "#{node['apache']['binary']} -t", :environment => { 'APACHE_LOG_DIR' => node['apache']['log_dir'] }, :timeout => 10
 end
 
-template '/var/www/html/index.html'
+template '/var/www/html/index.html' do
  source 'index.erb'
  action :create
  owner 'root'
