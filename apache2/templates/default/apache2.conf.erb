@@ -5,6 +5,8 @@
 
 ServerRoot "<%= node['apache']['dir'] %>"
 
+DocumentRoot "/var/www/html"
+
 #
 # The accept serialization lock file MUST BE STORED ON A LOCAL DISK.
 #
@@ -64,7 +66,7 @@ Group <%= node['apache']['group'] %>
 <Directory />
         Options FollowSymLinks
         AllowOverride None
-        Require all denied
+        Require all granted
 </Directory>
 
 <Directory /usr/share>
